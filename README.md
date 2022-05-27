@@ -2,11 +2,11 @@
 フルスクラッチのPython製将棋ソフト
 
 ## ファイル構成
-- gameboard.py
+### gameboard.py
 将棋盤を表すclass、shogi-boardの実装
 
-- N-Shogi.py
+### N-Shogi.py
 GUIとのやり取りを行う部分
 
-- N-Shogi.bat
+### N-Shogi.bat
 GUIとのやり取りを行うバッチファイル
