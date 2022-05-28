@@ -35,8 +35,6 @@ while True:
         if command[:6] == "ponder":
             continue
         legal_moves = list(current_board.legal_moves())
-        for move in legal_moves:
-            print(move.name)
         if len(legal_moves) == 0: 
             print("bestmove resign")
         else:
