@@ -29,7 +29,6 @@ while True:
                 current_board = gameboard.shogi_board()
             else:
                 current_board = gameboard.shogi_board(sfen)
-        current_board.print_in_BOD()
 
     if command[:2] == "go":
         command = command[3:]
