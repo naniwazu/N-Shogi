@@ -4,7 +4,7 @@ from random import choice
 while True:
     command = input()
     if command == "usi":
-        print("id name N-Shogi")
+        print("id name N-Shogi0")
         print("id author naniwazu")
         print("usiok")
     if command == "isready":
