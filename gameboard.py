@@ -11,7 +11,6 @@ rank = ["a", "b", "c", "d", "e", "f", "g", "h", "i"]
 file_to_index = {"9":0, "8":1, "7":2, "6":3, "5":4, "4":5, "3":6, "2":7, "1":8}
 rank_to_index = {"a":0, "b":1, "c":2, "d":3, "e":4, "f":5, "g":6, "h":7, "i":8}
 
-
 class piece:
     def __init__(self, name):
         if name[-1].isupper():
@@ -90,6 +89,8 @@ class shogi_board:
                 else:
                     self.white_hand[hand[idx]] += num
                     idx += 1
+
+        self.history = []
 
     def print_in_BOD(self):
         print("後手の持ち駒:", end="")
@@ -320,7 +321,7 @@ class shogi_board:
         for _move in self.moves():
             self.append(_move)
             legal = self.legal()
-            self.pop(_move)
+            self.pop()
             if legal:
                 yield _move
 
@@ -362,6 +363,7 @@ class shogi_board:
         return True
 
     def append(self, _move):
+        self.history.append(_move)
         i, j = _move._from
         ni, nj = _move._to
         if (i, j) == (-1, -1):
@@ -385,7 +387,8 @@ class shogi_board:
         self.move_count += 1
         self.black_turn ^= 1
 
-    def pop(self, _move):
+    def pop(self):
+        _move = self.history.pop()
         i, j = _move._from
         ni, nj = _move._to
 
