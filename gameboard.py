@@ -5,6 +5,9 @@ number_in_Japanese = ["零", "一", "二", "三", "四", "五", "六",  "七", "
 name_in_Japanese = \
         {"p":"歩", "l":"香", "n":"桂", "s":"銀", "g":"金", "b": "角", "r":"飛", \
          "k":"玉", "+p":"と", "+l":"杏", "+n":"圭", "+s":"全", "+b":"馬", "+r":"龍"}
+value_of_pieces = {"p":100, "l":300, "n":400, "s":600, "g":700, "b":900, "r":1000, \
+    "k":0, "+p":700, "+l":700, "+n":700, "+s":700, "+b":1100, "+r":1200}
+INF = 10**9
 
 file = ["9", "8", "7", "6", "5", "4", "3", "2", "1"]
 rank = ["a", "b", "c", "d", "e", "f", "g", "h", "i"]
@@ -435,3 +438,19 @@ class shogi_board:
             if string[-1] == "+":
                 promote = 1
         return move(i, j, ni, nj, piece_name, promote, get)
+
+    def evaluate(self):
+        score = 0
+        for i in range(9):
+            for j in range(9):
+                if self.board[i][j] != "":
+                    if self.board[i][j].isblack:
+                        score += value_of_pieces[self.board[i][j].name]
+                    else:
+                        score -= value_of_pieces[self.board[i][j].name]
+        
+        for _piece in self.black_hand:
+            score += value_of_pieces[_piece]*self.black_hand[_piece]
+        for _piece in self.white_hand:
+            score -= value_of_pieces[_piece]*self.white_hand[_piece]
+        return score
