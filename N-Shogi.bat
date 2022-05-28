@@ -1,1 +1,0 @@
-py N-Shogi.py
